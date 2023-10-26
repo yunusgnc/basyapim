@@ -3,6 +3,7 @@ import WhoWeAre from "../../../component/about/WhoWeAre";
 import LoopSection from "../../../component/home/LoopSection";
 import SectionTwo from "../../../component/about/SectionTwo";
 import OurClients from "../../../component/about/OurClients";
+import Intro from "../../../component/about/Intro";
 
 export default function index() {
   return (
@@ -11,6 +12,7 @@ export default function index() {
       <LoopSection />
       <SectionTwo />
       <OurClients />
+      <Intro />
     </div>
   );
 }

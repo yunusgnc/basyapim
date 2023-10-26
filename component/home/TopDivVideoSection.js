@@ -24,11 +24,11 @@ const BackgroundVideoComponent = () => {
           style={{
             backgroundImage:
               "url('https://assets-global.website-files.com/636e23ecf118df495e7a2aca/6384e8f2a2527588c07ba59e_video1337-poster-00001.jpg')",
+            objectFit: "cover",
           }}
           muted
           playsInline
-          data-wf-ignore='true'
-          objectFit='cover'>
+          data-wf-ignore='true'>
           <source
             src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/6384e8f2a2527588c07ba59e_video1337-transcode.mp4'
             data-wf-ignore='true'

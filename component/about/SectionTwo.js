@@ -52,7 +52,7 @@ export default function SectionTwo() {
             <div
               id='w-node-_1f91660b-80ea-6a6e-868b-3718c1de8673-ed7a2ae6'
               className='button-wrapper'>
-              <a href='/works-2' className='primary-button w-button'>
+              <a href='/work' className='primary-button w-button'>
                 Portfolio
               </a>
             </div>

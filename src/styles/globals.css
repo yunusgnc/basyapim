@@ -2016,7 +2016,7 @@ textarea.w-select {
 
 .w-nav-overlay {
   width: 100%;
-  display: none;
+  /* display: none; */
   position: absolute;
   top: 100%;
   left: 0;
@@ -2094,7 +2094,19 @@ textarea.w-select {
 
 @media screen and (max-width: 991px) {
   .w-nav[data-collapse="medium"] .w-nav-menu {
+    /* display: none; */
+  }
+
+  .d-none-mobile {
     display: none;
+  }
+
+  .d-bloc-mobilek {
+    display: block !important;
+  }
+
+  .d-flex-mobile {
+    display: flex !important;
   }
 
   .w-nav[data-collapse="medium"] .w-nav-button {
@@ -2110,7 +2122,7 @@ textarea.w-select {
 @media screen and (max-width: 992px) {
   .w-nav-brand {
     padding-left: 10px;
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -2141,6 +2153,18 @@ textarea.w-select {
 
 .w-tab-menu {
   position: relative;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
 }
 
 .w-tab-link {
@@ -5993,6 +6017,7 @@ figure {
   .nav-container {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #000;
   }
 
   .nav-menu {
@@ -6355,7 +6380,7 @@ figure {
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    display: none;
+    /* display: none; */
   }
 
   .rich-text-style h4 {

@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function ContactUs() {
+  const [selectedOption, setSelectedOption] = useState("Commetcial Video");
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
   return (
     <div className='contact-us-section'>
       <div className='base-container w-container'>
@@ -33,15 +38,20 @@ export default function ContactUs() {
                 aria-label='Email Form'>
                 <div className='radio-buttons-wrapper'>
                   <label className='radio-button-field w-radio'>
-                    <div className='w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input' />
+                    <div
+                      className={`w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input ${
+                        selectedOption === "Commetcial Video"
+                          ? "w--redirected-checked"
+                          : ""
+                      }`}
+                    />
                     <input
                       type='radio'
                       data-name='Interested in'
                       id='Commetcial-Video'
                       name='Interested-in'
                       defaultValue='Commetcial Video'
-                      required=''
-                      defaultChecked=''
+                      onChange={() => handleOptionChange("Commetcial Video")}
                       style={{ opacity: 0, position: "absolute", zIndex: -1 }}
                     />
                     <span
@@ -51,13 +61,20 @@ export default function ContactUs() {
                     </span>
                   </label>
                   <label className='radio-button-field w-radio'>
-                    <div className='w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input' />
+                    <div
+                      className={`w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input ${
+                        selectedOption === "Presentation"
+                          ? "w--redirected-checked"
+                          : ""
+                      }`}
+                    />
                     <input
                       type='radio'
                       data-name='Interested in'
                       id='Presentation'
                       name='Interested-in'
                       defaultValue='Presentation'
+                      onChange={() => handleOptionChange("Presentation")}
                       style={{ opacity: 0, position: "absolute", zIndex: -1 }}
                     />
                     <span
@@ -67,13 +84,20 @@ export default function ContactUs() {
                     </span>
                   </label>
                   <label className='radio-button-field w-radio'>
-                    <div className='w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input w--redirected-checked' />
+                    <div
+                      className={`w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input ${
+                        selectedOption === "Other"
+                          ? "w--redirected-checked"
+                          : ""
+                      }`}
+                    />
                     <input
                       type='radio'
                       data-name='Interested in'
                       id='Other-2'
                       name='Interested-in'
                       defaultValue='Other'
+                      onChange={() => handleOptionChange("Other")}
                       style={{ opacity: 0, position: "absolute", zIndex: -1 }}
                     />
                     <span

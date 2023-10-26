@@ -67,9 +67,7 @@ export default function TextLinesComponent() {
                       height={326}
                       scrolling='no'
                       title='Giphy embed'
-                      frameBorder={0}
                       allow='autoplay; fullscreen'
-                      allowFullScreen='true'
                     />
                   </div>
                 </div>
@@ -104,9 +102,7 @@ export default function TextLinesComponent() {
                       height={245}
                       scrolling='no'
                       title='Giphy embed'
-                      frameBorder={0}
                       allow='autoplay; fullscreen'
-                      allowFullScreen='true'
                     />
                   </div>
                 </div>
@@ -149,9 +145,7 @@ export default function TextLinesComponent() {
                       height={244}
                       scrolling='no'
                       title='Giphy embed'
-                      frameBorder={0}
                       allow='autoplay; fullscreen'
-                      allowFullScreen='true'
                     />
                   </div>
                   <a
