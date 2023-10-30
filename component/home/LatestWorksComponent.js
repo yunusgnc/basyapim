@@ -17,7 +17,8 @@ const LatestWorksComponent = () => {
         }
       },
       {
-        threshold: 0.2, // Bileşenin %20'si göründüğünde tetikle
+        // Bileşenin %20'si göründüğünde tetikle
+        threshold: 0.2,
       }
     );
 

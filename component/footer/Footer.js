@@ -1,8 +1,38 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useSpring, animated } from "react-spring";
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer kullanarak element görünür hale geldiğinde durumu güncelle
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.4 } // Elementin yüzde 20'si görünürse animasyonu başlat
+    );
+
+    const element = document.querySelector(".footer"); // Footer elementini seç
+    if (element) {
+      observer.observe(element);
+    }
+
+    // Observer'ı temizleme
+    return () => observer.disconnect();
+  }, []);
+
+  // Animasyonu oluşturma
+  const props = useSpring({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? "translateY(0%)" : "translateY(20%)",
+    config: { duration: 500 },
+  });
   return (
-    <div className='footer'>
+    <animated.div className='footer' style={props}>
       <div className='base-container w-container'>
         <div className='footer-wrapper'>
           <p
@@ -78,6 +108,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }

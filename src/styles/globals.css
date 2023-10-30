@@ -2751,6 +2751,8 @@ figure {
   width: 100%;
   background-color: rgba(0, 0, 0, 0);
   position: fixed;
+  /* Navbar'ın arka plan rengini değiştiren animasyon */
+  transition: background-color 0.6s ease; /* Arka plan rengi değişim süresi ve geçiş türü */
 }
 
 .nav-container {
@@ -8285,4 +8287,45 @@ figure {
 
 .latest-works-video-item {
   opacity: 0;
+}
+
+/* Hover efekti için */
+.category-ablsolute-link:hover .extra-bold-text {
+  color: white;
+}
+
+/* Animasyonlu bileşen için stil */
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.base-container {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.text-lines-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Örnek olarak bir kategori kutusu */
+.text-and-image-lines-wrapper {
+  padding: 20px;
+  transition: all 0.3s ease; /* Smooth geçiş için */
+}
+
+.text-and-image-lines-wrapper:hover {
+  transform: scale(1.03); /* Hover yapıldığında büyütme efekti */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif bir gölge efekti */
+}
+.hover-animation:hover {
+  color: #ffffff; /* Varsayılan rengi istediğiniz renkle değiştirin */
+  transform: scale(1.03); /* 1.1 kat büyütme animasyonu */
+  transition: color 0.3s ease, transform 0.3s ease; /* Animasyon süresi ve geçiş efekti */
+}
+.our-clients-link-block-wrapper:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease, color 0.3s ease;
 }

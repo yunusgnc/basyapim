@@ -1,42 +1,63 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useSpring, animated, config } from "react-spring";
+import gsap from "gsap";
 
-export default function WhoWeAre() {
+const WhoWeAre = () => {
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    const banner = bannerRef.current;
+
+    // GSAP animasyonu: sayfa açıldıktan 1.5 saniye sonra başlar
+    gsap.fromTo(
+      banner,
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power3.out", // Yavaş başlama ve yavaş bitiş için ease fonksiyonu
+        delay: 0.5, // 1.5 saniye gecikme
+      }
+    );
+  }, []);
+
+  const props = useSpring({
+    opacity: 1,
+    transform: "translateY(0%)",
+    config: config.default,
+  });
+
   return (
-    <div>
-      <div className='top-banner-section about-us-2'>
+    <div ref={bannerRef}>
+      <animated.div style={props} className='top-banner-section about-us-2'>
         <div className='about-us-video-wrapper'>
-          <div
-            data-poster-url='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-poster-00001.jpg'
-            data-video-urls='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-transcode.mp4,https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-transcode.webm'
-            data-autoplay='true'
-            data-loop='true'
-            data-wf-ignore='true'
-            className='background-video-about-us about-us-2 w-background-video w-background-video-atom'>
+          <div className='background-video-about-us about-us-2 w-background-video w-background-video-atom'>
             <video
-              id='b41d7f53-f2a7-9619-124a-3d2f796f1190-video'
-              autoPlay=''
-              loop=''
-              style={{
-                backgroundImage:
-                  'url("https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-poster-00001.jpg")',
-              }}
-              muted=''
-              playsInline=''
-              data-wf-ignore='true'
-              data-object-fit='cover'>
+              autoPlay
+              loop
+              muted
+              playsInline
+              data-object-fit='cover'
+              poster='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-poster-00001.jpg'>
               <source
                 src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-transcode.mp4'
-                data-wf-ignore='true'
+                type='video/mp4'
               />
               <source
                 src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637dd98bfd49392ee57398a3_pexels-cottonbro-8679948-transcode.webm'
-                data-wf-ignore='true'
+                type='video/webm'
               />
             </video>
             <h1>Who We Are</h1>
           </div>
         </div>
-      </div>
+      </animated.div>
     </div>
   );
-}
+};
+
+export default WhoWeAre;

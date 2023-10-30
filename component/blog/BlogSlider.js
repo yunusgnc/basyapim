@@ -1,8 +1,16 @@
 import React from "react";
+import { useSpring, animated } from "react-spring";
 
 export default function BlogSlider() {
+  const props = useSpring({
+    opacity: 1,
+    transform: "translateY(0)",
+    from: { opacity: 0, transform: "translateY(50px)" },
+    config: { duration: 500 },
+  });
+
   return (
-    <div>
+    <animated.div style={props}>
       <div className='section blog-sidebar'>
         <div className='base-container w-container'>
           <div className='blog-sidebar-wrapper'>
@@ -439,6 +447,6 @@ export default function BlogSlider() {
           </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }

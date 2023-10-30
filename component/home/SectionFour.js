@@ -1,44 +1,65 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useSpring, animated, config } from "react-spring";
 
 const BackgroundVideoComponent = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const props = useSpring({
+    opacity: isVisible ? 1 : 0,
+    from: { opacity: 0 },
+    reset: true,
+    config: config.molasses,
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      { threshold: 0.2 } // Elementin %20'si görünür hale geldiğinde animasyonu başlat
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className='section'>
-      <div
-        data-poster-url='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-poster-00001.jpg'
-        data-video-urls='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-transcode.mp4,https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-transcode.webm'
-        data-autoplay='true'
-        data-loop='true'
-        data-wf-ignore='true'
-        data-w-id='e477bc98-84fe-ba77-8f99-999bd15fd945'
+    <div ref={sectionRef} className='section'>
+      <animated.div
         style={{
-          opacity: 1,
-          transform:
-            "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-          transformStyle: "preserve-3d",
+          ...props,
+          backgroundImage:
+            "url('https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-poster-00001.jpg')",
+          backgroundSize: "cover",
+          position: "relative",
         }}
         className='background-video-full-width w-background-video w-background-video-atom'>
         <video
-          id='e477bc98-84fe-ba77-8f99-999bd15fd945-video'
           autoPlay
           loop
-          style={{
-            backgroundImage:
-              "url('https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-poster-00001.jpg')",
-          }}
           muted
           playsInline
-          data-wf-ignore='true'
-          data-object-fit='cover'>
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}>
           <source
             src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-transcode.mp4'
-            data-wf-ignore='true'
+            type='video/mp4'
           />
           <source
             src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/638206dcf12be104fe7b9b04_pexels-nadezhda-moryak-9805957-transcode.webm'
-            data-wf-ignore='true'
+            type='video/webm'
           />
         </video>
-      </div>
+      </animated.div>
     </div>
   );
 };

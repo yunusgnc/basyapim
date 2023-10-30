@@ -1,37 +1,36 @@
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useSpring, animated } from "react-spring";
+
 export default function TextLinesComponent() {
   const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = React.useState(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-
-    const tl = gsap.timeline({
-      defaults: { duration: 1, ease: "power2.out" },
-    });
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Element görünür hale geldiğinde animasyonu başlat
-            tl.from(section, { opacity: 1, y: 100, ease: "power4.out" });
-            observer.unobserve(section); // Animasyonu yalnızca bir kez başlatmak için gözlemciyi kaldır
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.5 } // Elementin yüzde 20'si görünür hale geldiğinde animasyonu başlat
+      { threshold: 0.2 }
     );
 
-    observer.observe(section);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-    return () => {
-      // Cleanup GSAP animation on unmount
-      tl.kill();
-    };
+    return () => observer.disconnect();
   }, []);
+
+  const props = useSpring({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? "translateY(0px)" : "translateY(100px)",
+    config: { duration: 500 },
+  });
   return (
-    <div className='section' ref={sectionRef}>
+    <animated.div className='section' ref={sectionRef}>
       <div className='base-container w-container'>
         <div className='text-lines-wrapper'>
           <div
@@ -158,6 +157,6 @@ export default function TextLinesComponent() {
           </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }

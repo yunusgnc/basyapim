@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useSpring, animated, config } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
 export default function OurProcess() {
+  const [isVisible, setIsVisible] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  const animationProps = useSpring({
+    opacity: isVisible ? 1 : 0, // Gösterim durumuna göre opacity ayarla
+    y: isVisible ? 0 : 50, // Gösterim durumuna göre yükseklik ayarla
+    config: config.wobbly, // Animasyonun yumuşaklığını ayarla
+    immediate: !isVisible, // isVisible false ise animasyonu hemen uygula, true ise animasyonu takip et
+  });
+
+  // inView değiştiğinde isVisible durumunu güncelle
+  useEffect(() => {
+    setIsVisible(inView);
+  }, [inView]);
+
   return (
-    <div className='section'>
+    <div ref={ref} className='section'>
       <div className='base-container w-container'>
-        <div className='video-info-content-wrapper works-2-top'>
-          <div
-            data-w-id='9a3b8dac-b3f9-9e7e-4a4a-a53a4bf0fa06'
-            style={{
-              opacity: 1,
-              transform:
-                "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-              transformStyle: "preserve-3d",
-            }}
-            className='home-video-player home-3'>
+        <animated.div
+          style={animationProps}
+          className='video-info-content-wrapper works-2-top'>
+          <div className='home-video-player home-3'>
             <img
               src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/6384ca77a8f1b16a1c893213_Rectangle%2013.webp'
               loading='lazy'
@@ -24,24 +39,8 @@ export default function OurProcess() {
             />
           </div>
           <div className='video-info-block-wrapper'>
-            <h3
-              data-w-id='9a3b8dac-b3f9-9e7e-4a4a-a53a4bf0fa02'
-              style={{
-                opacity: 1,
-                transform:
-                  "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                transformStyle: "preserve-3d",
-              }}>
-              Our process
-            </h3>
-            <p
-              data-w-id='9a3b8dac-b3f9-9e7e-4a4a-a53a4bf0fa04'
-              style={{
-                opacity: 1,
-                transform:
-                  "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                transformStyle: "preserve-3d",
-              }}>
+            <h3>Our process</h3>
+            <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse varius enim in eros elementum tristique. Duis cursus,
               mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
@@ -49,7 +48,7 @@ export default function OurProcess() {
               lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
             </p>
           </div>
-        </div>
+        </animated.div>
       </div>
     </div>
   );

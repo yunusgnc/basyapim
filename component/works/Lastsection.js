@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useSpring, animated, config } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
 export default function Lastsection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  const animationProps = useSpring({
+    opacity: isVisible ? 1 : 0,
+    y: isVisible ? 0 : 50,
+    config: config.wobbly,
+    immediate: !isVisible,
+  });
+
+  useEffect(() => {
+    setIsVisible(inView);
+  }, [inView]);
+
   return (
-    <div>
+    <div ref={ref}>
       <div className='section'>
         <div className='base-container w-container'>
           <div className='video-info-content-wrapper works-2'>
-            <div className='video-info-block-wrapper'>
-              <h3
-                data-w-id='b39ff4ca-0b2d-d806-bbfc-16b30b4ff4aa'
-                style={{
-                  opacity: 1,
-                  transform:
-                    "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                  transformStyle: "preserve-3d",
-                }}>
-                Let’s discover how we workg
-              </h3>
-              <p
-                data-w-id='b39ff4ca-0b2d-d806-bbfc-16b30b4ff4ac'
-                style={{
-                  opacity: 1,
-                  transform:
-                    "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                  transformStyle: "preserve-3d",
-                }}>
+            <animated.div
+              style={animationProps}
+              className='video-info-block-wrapper'>
+              <h3>Let’s discover how we workg</h3>
+              <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse varius enim in eros elementum tristique. Duis
                 cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
@@ -32,15 +38,9 @@ export default function Lastsection() {
                 cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
                 tristique posuere.
               </p>
-            </div>
-            <div
-              data-w-id='b39ff4ca-0b2d-d806-bbfc-16b30b4ff4ae'
-              style={{
-                opacity: 1,
-                transform:
-                  "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                transformStyle: "preserve-3d",
-              }}
+            </animated.div>
+            <animated.div
+              style={animationProps}
               className='home-video-player home-3'>
               <img
                 src='https://assets-global.website-files.com/636e23ecf118df495e7a2aca/637f5a0e5c6c040ec2493638_Rectangle%208.webp'
@@ -59,7 +59,7 @@ export default function Lastsection() {
                 <div className='play-button' />
                 <div className='play-button-hover' />
               </a>
-            </div>
+            </animated.div>
           </div>
         </div>
       </div>
