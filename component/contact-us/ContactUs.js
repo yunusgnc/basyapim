@@ -12,8 +12,8 @@ export default function ContactUs() {
         <div className='contact-us-content'>
           <div className='contact-us-info'>
             <div className='have-an-idea-wrapper'>
-              <div className='text-title'>Have an idea?</div>
-              <h1 className='contact-us-title'>Let’s work together</h1>
+              <div className='text-title'>Bir fikrim var?</div>
+              <h1 className='contact-us-title'>Beraber çalışalım</h1>
             </div>
             <div className='contact-us-links-wrapper desctop'>
               <div className='location-text-block'>
@@ -25,7 +25,7 @@ export default function ContactUs() {
             </div>
           </div>
           <div className='contact-form-wrapper'>
-            <div className='text-title'>I’m interested in...</div>
+            <div className='text-title'>İlgiliyim...</div>
             <div className='contact-us-form-block w-form'>
               <form
                 id='email-form'
@@ -57,7 +57,7 @@ export default function ContactUs() {
                     <span
                       className='radio-button-lable-contact-form w-form-label'
                       htmlFor='Commetcial-Video'>
-                      Commetcial Video
+                      Tanıtım Videosu
                     </span>
                   </label>
                   <label className='radio-button-field w-radio'>
@@ -80,7 +80,7 @@ export default function ContactUs() {
                     <span
                       className='radio-button-lable-contact-form w-form-label'
                       htmlFor='Presentation'>
-                      Presentation
+                      Sunum
                     </span>
                   </label>
                   <label className='radio-button-field w-radio'>
@@ -103,7 +103,7 @@ export default function ContactUs() {
                     <span
                       className='radio-button-lable-contact-form w-form-label'
                       htmlFor='Other-2'>
-                      Other
+                      Diğer
                     </span>
                   </label>
                 </div>
@@ -114,7 +114,7 @@ export default function ContactUs() {
                     maxLength={256}
                     name='Full-name'
                     data-name='Full name'
-                    placeholder='Full name'
+                    placeholder='İsim ve Soyisim'
                     id='Full-name-2'
                     required=''
                   />
@@ -134,12 +134,12 @@ export default function ContactUs() {
                     maxLength={256}
                     name='Phone'
                     data-name='Phone'
-                    placeholder='Phone'
+                    placeholder='Telefon'
                     id='Phone'
                     required=''
                   />
                   <textarea
-                    placeholder='Message'
+                    placeholder='Mesajınız'
                     maxLength={5000}
                     id='field'
                     name='field'

@@ -53,7 +53,7 @@ export default function VideoPlayer() {
             <div className='play-button' />
             <div className='play-button-hover' />
           </a>
-          <h4 className='video-title'>Let’s discover how we work</h4>
+          <h4 className='video-title'>Nasıl çalıştığımızı keşfedelim</h4>
         </div>
       </div>
     </div>

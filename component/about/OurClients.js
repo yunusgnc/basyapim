@@ -18,7 +18,7 @@ export default function OurClients() {
       <animated.div style={springProps}>
         <div style={springProps} className='base-container w-container'>
           <div className='our-clients-names-wrapper left-align'>
-            <h4>OUR CLIENTS</h4>
+            <h4>Müşterilerimiz</h4>
             <a
               href='https://webflow.com/templates/designers/128-digital'
               target='_blank'

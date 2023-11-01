@@ -77,16 +77,19 @@ export default function Footer() {
               href='/'
               aria-current='page'
               className='nav-link footer-link-first w--current'>
-              Home
+              Anasayfa
             </a>
             <a href='/about' className='nav-link footer-link'>
-              About
+              Hakkımızda
             </a>
             <a href='/works' className='nav-link footer-link'>
-              Work
+              Çalışmalarımız
             </a>
             <a href='/blog' className='nav-link footer-link'>
               Blog
+            </a>
+            <a href='/projects' className='nav-link footer-link'>
+              Projelerimiz
             </a>
           </div>
           <div className='footer-copyright'>

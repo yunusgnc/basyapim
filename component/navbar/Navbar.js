@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import gsap from "gsap";
 import Link from "next/link";
 export default function Navbar() {
@@ -7,23 +7,51 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+  const [activeNavItem, setActiveNavItem] = useState(""); // Aktif navigasyon öğesi
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Sayfa yüklendiğinde ve pencere boyutu değiştiğinde kontrolü yap
     handleResize();
 
-    // Pencere boyutu değiştiğinde kontrolü güncelle
     window.addEventListener("resize", handleResize);
 
-    // Temizleme işlevi
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // B
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setNavbarBackground("bg-dark");
+      } else {
+        setNavbarBackground("");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const menu = menuRef.current;
+    if (menu) {
+      gsap.set(menu, { height: 0, opacity: 0, overflow: "hidden" });
+    }
+  }, []);
+
+  useEffect(() => {
+    // Sayfa yüklendiğinde veya yol değiştiğinde aktif navigasyon öğesini güncelle
+    setActiveNavItem(router.pathname);
+  }, [router.pathname]);
+
   const handleSetMobileMenuOpen = () => {
     const menu = menuRef.current;
     if (menu) {
@@ -53,29 +81,6 @@ export default function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setNavbarBackground("bg-dark");
-      } else {
-        setNavbarBackground("");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const menu = menuRef.current;
-    if (menu) {
-      gsap.set(menu, { height: 0, opacity: 0, overflow: "hidden" });
-    }
-  }, []);
-
   return (
     <div>
       <div
@@ -84,7 +89,6 @@ export default function Navbar() {
         data-easing2='ease'
         data-easing='ease'
         data-collapse='medium'
-        data-w-id='ad0925c3-4db7-e584-bbd6-dfdc92cee912'
         role='banner'
         style={{
           willChange: "background",
@@ -155,17 +159,16 @@ export default function Navbar() {
                     aria-haspopup='menu'
                     aria-expanded='false'
                     role='button'
+                    onClick={handleSetMobileMenuOpen}
                     tabIndex={0}>
                     <Link href='/'>
-                      <div
-                        className='nav-dropdown-icon w-icon-dropdown-toggle'
-                        aria-hidden='true'
-                      />
-                      <p className='nav-item-title'>Home</p>
-                      <div
-                        className='home-tab-underline'
-                        style={{ width: "35%" }}
-                      />
+                      <p className='nav-item-title'>Anasayfa</p>
+                      {activeNavItem === "/" && (
+                        <div
+                          className='home-tab-underline'
+                          style={{ width: "35%" }}
+                        />
+                      )}
                     </Link>
                   </div>
                 </div>
@@ -182,22 +185,20 @@ export default function Navbar() {
                     aria-haspopup='menu'
                     aria-expanded='false'
                     role='button'
+                    onClick={handleSetMobileMenuOpen}
                     tabIndex={0}>
                     <Link href='/about'>
-                      <div
-                        className='nav-dropdown-icon w-icon-dropdown-toggle'
-                        aria-hidden='true'
-                      />
-                      <p className='nav-item-title'>About</p>
+                      <p className='nav-item-title'>Hakkımızda</p>
+                      {activeNavItem === "/about" && (
+                        <div
+                          className='home-tab-underline'
+                          style={{ width: "35%" }}
+                        />
+                      )}
                     </Link>
                   </div>
                 </div>
-                <div
-                  data-hover='true'
-                  data-delay={0}
-                  data-w-id='a6fdb6f4-b917-73e8-43aa-9aca0856e073'
-                  className='nav-dropdown w-dropdown'
-                  style={{ maxWidth: 1200 }}>
+                <div style={{ maxWidth: 1200 }}>
                   <div
                     className='nav-dropdown-toggle w-dropdown-toggle'
                     id='w-dropdown-toggle-2'
@@ -205,74 +206,50 @@ export default function Navbar() {
                     aria-haspopup='menu'
                     aria-expanded='false'
                     role='button'
+                    onClick={handleSetMobileMenuOpen}
                     tabIndex={0}>
                     <Link href='/works'>
                       <div
                         className='nav-dropdown-icon w-icon-dropdown-toggle'
                         aria-hidden='true'
                       />
-                      <p className='nav-item-title'>Works</p>
+                      <p className='nav-item-title'>Çalışmalarımız</p>
+                      {activeNavItem === "/works" && (
+                        <div
+                          className='home-tab-underline'
+                          style={{ width: "35%" }}
+                        />
+                      )}
                     </Link>
                   </div>
                 </div>
                 <div
                   data-w-id='fe060b5d-81e8-a354-cdf4-64669c4ad870'
+                  onClick={handleSetMobileMenuOpen}
                   className='nav-link-wrapper'>
                   <Link href='/blog' className='nav-link'>
                     Blog
+                    {activeNavItem === "/blog" && (
+                      <div
+                        className='home-tab-underline'
+                        style={{ width: "35%" }}
+                      />
+                    )}
                   </Link>
                 </div>
                 <div
-                  data-hover='true'
-                  data-delay={0}
-                  data-w-id='ad0925c3-4db7-e584-bbd6-dfdc92cee93f'
-                  className='nav-dropdown w-dropdown'
-                  style={{ maxWidth: 1200 }}>
-                  <div
-                    className='nav-dropdown-toggle w-dropdown-toggle'
-                    id='w-dropdown-toggle-3'
-                    aria-controls='w-dropdown-list-3'
-                    aria-haspopup='menu'
-                    aria-expanded='false'
-                    role='button'
-                    tabIndex={0}>
-                    <div
-                      className='nav-dropdown-icon w-icon-dropdown-toggle'
-                      aria-hidden='true'
-                    />
-                    <Link href='/blog' className='nav-link'>
-                      <p className='nav-item-title'>Pages</p>
-                    </Link>
-                  </div>
-                  <nav
-                    className='nav-dropdown-list pages w-dropdown-list'
-                    id='w-dropdown-list-3'
-                    aria-labelledby='w-dropdown-toggle-3'>
-                    <div className='nav-dropdown-column'>
-                      <div className='nav-dropdown-link-wrapper'>
-                        <a
-                          href='/contact-us'
-                          className='nav-dropdown-link w-dropdown-link'
-                          tabIndex={0}>
-                          <span className='nav-dropdown-link-line'> </span>
-                          Contact Us
-                        </a>
-                        <a
-                          href='/401'
-                          className='nav-dropdown-link w-dropdown-link'
-                          tabIndex={0}>
-                          <span className='nav-dropdown-link-line'> </span>
-                          Password Page
-                        </a>
-                        <a
-                          href='/404'
-                          className='nav-dropdown-link w-dropdown-link'
-                          tabIndex={0}>
-                          <span className='nav-dropdown-link-line'> </span>404
-                        </a>
-                      </div>
-                    </div>
-                  </nav>
+                  data-w-id='fe060b5d-81e8-a354-cdf4-64669c4ad870'
+                  onClick={handleSetMobileMenuOpen}
+                  className='nav-link-wrapper'>
+                  <Link href='/projects' className='nav-link'>
+                    Projelerimiz
+                    {activeNavItem === "/blog" && (
+                      <div
+                        className='home-tab-underline'
+                        style={{ width: "35%" }}
+                      />
+                    )}
+                  </Link>
                 </div>
               </div>
             </nav>
@@ -280,7 +257,7 @@ export default function Navbar() {
               <a
                 href='/contact-us'
                 className='primary-button arrow-link-icon w-button'>
-                Let's Talk<span className='link-arrow-icon'> </span>
+                İletişime Geçin<span className='link-arrow-icon'> </span>
               </a>
             </div>
             <div
