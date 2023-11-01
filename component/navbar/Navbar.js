@@ -243,7 +243,7 @@ export default function Navbar() {
                   className='nav-link-wrapper'>
                   <Link href='/projects' className='nav-link'>
                     Projelerimiz
-                    {activeNavItem === "/blog" && (
+                    {activeNavItem === "/projects" && (
                       <div
                         className='home-tab-underline'
                         style={{ width: "35%" }}
