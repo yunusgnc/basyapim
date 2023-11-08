@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
-const BackgroundVideoComponent = () => {
+const BackgroundVideoComponent = ({ data, searchDataFunction }) => {
   const props = useSpring({
     opacity: 1,
     transform: "translateY(0)",
@@ -39,6 +39,9 @@ const BackgroundVideoComponent = () => {
           />
         </video>
         <animated.h1 style={props} className='home-title'>
+          {data.map((item, index) => {
+            return searchDataFunction(item, "homeHeading");
+          })}
           We Make <br /> Digital Awesome
         </animated.h1>
       </div>

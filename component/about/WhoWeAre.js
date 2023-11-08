@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import gsap from "gsap";
 
-const WhoWeAre = () => {
+const WhoWeAre = ({ data, searchDataFunction }) => {
   const bannerRef = useRef(null);
 
   useEffect(() => {
@@ -52,7 +52,12 @@ const WhoWeAre = () => {
                 type='video/webm'
               />
             </video>
-            <h1>Who We Are</h1>
+            <h1>
+              {data.map((item, index) => {
+                return searchDataFunction(item, "aboutHeading");
+              })}
+              Who We Are
+            </h1>
           </div>
         </div>
       </animated.div>

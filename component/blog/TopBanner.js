@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import gsap from "gsap";
 
-export default function TopBanner() {
+export default function TopBanner({ data, searchDataFunction }) {
   const bannerRef = useRef(null);
 
   useEffect(() => {
@@ -64,6 +64,9 @@ export default function TopBanner() {
               data-wf-ignore='true'
             />
           </video>
+          {data.map((item, index) => {
+            return searchDataFunction(item, "blogHeading");
+          })}
           <h1 className='home-title'>Blog</h1>
         </animated.div>
       </div>
