@@ -1,13 +1,15 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import DOMPurify from "dompurify";
 
 const BackgroundVideoComponent = ({ data, searchDataFunction }) => {
   const props = useSpring({
     opacity: 1,
     transform: "translateY(0)",
     from: { opacity: 0, transform: "translateY(100px)" },
-    config: { duration: 1000 }, // Animasyon süresi (ms cinsinden)
+    config: { duration: 1000 },
   });
+
   return (
     <div className='top-banner-section'>
       <div
@@ -39,10 +41,20 @@ const BackgroundVideoComponent = ({ data, searchDataFunction }) => {
           />
         </video>
         <animated.h1 style={props} className='home-title'>
-          {data.map((item, index) => {
-            return searchDataFunction(item, "homeHeading");
-          })}
-          We Make <br /> Digital Awesome
+          {data.map(
+            (item, index) => (
+              (
+                <span
+                  key={index}
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(
+                      item.type === "homeHeading" ? item.content : ""
+                    ),
+                  }}
+                />
+              )
+            )
+          )}
         </animated.h1>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Award() {
+export default function Award({ data, searchDataFunction }) {
   return (
     <div>
       <div className='section'>

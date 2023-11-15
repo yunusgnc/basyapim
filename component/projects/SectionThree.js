@@ -1,6 +1,7 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
-export default function SectionThree() {
+export default function SectionThree({ data, searchDataFunction }) {
   return (
     <div>
       <div className='section'>
@@ -14,29 +15,17 @@ export default function SectionThree() {
               transformStyle: "preserve-3d",
             }}
             className='blog-rich-text w-richtext'>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
-              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum
-              lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
-            </p>
-            <blockquote>
-              Recognised and awarded on multiple occasions for producing
-              consistently outstanding products
-            </blockquote>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
-              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum
-              lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              varius enim in eros elementum tristique. Duis cursus, mi quis
-              viverra ornare, eros dolor interdum nulla, ut commodo diam libero
-              vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem
-              imperdiet. Nunc ut sem vitae risus tristique posuere.
-            </p>
+            {data.map((item, index) => (
+              <React.Fragment key={index}>
+                {item.type === "desc" && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(item.content),
+                    }}
+                  />
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

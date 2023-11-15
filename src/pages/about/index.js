@@ -38,7 +38,7 @@ export default function index() {
       />
       <SectionTwo data={dataArray} searchDataFunction={setSearchDataFunction} />
       <OurClients data={dataArray} searchDataFunction={setSearchDataFunction} />
-      <Intro />
+      <Intro data={dataArray} searchDataFunction={setSearchDataFunction} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useInView } from "react-intersection-observer";
 
-export default function Intro() {
+export default function Intro({ data, searchDataFunction }) {
   const introRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({

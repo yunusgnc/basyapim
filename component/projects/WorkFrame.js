@@ -23,7 +23,7 @@ export default function WorkFrame() {
             title='Vimeo embed'
             frameBorder={0}
             allow='autoplay; fullscreen'
-            allowFullScreen='true'
+            allowFullScreen={true}
           />
         </div>
       </div>
