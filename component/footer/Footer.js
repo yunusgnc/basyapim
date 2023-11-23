@@ -13,10 +13,10 @@ export default function Footer() {
           }
         });
       },
-      { threshold: 0.4 } // Elementin yüzde 20'si görünürse animasyonu başlat
+      { threshold: 0.4 }
     );
 
-    const element = document.querySelector(".footer"); // Footer elementini seç
+    const element = document.querySelector(".footer");
     if (element) {
       observer.observe(element);
     }
@@ -93,21 +93,7 @@ export default function Footer() {
             </a>
           </div>
           <div className='footer-copyright'>
-            © Cinemax. All Rights Reserved 2023.{" "}
-            <a href='/templates/licensing'>
-              Licensing <br />
-            </a>
-            <a href='https://www.128.digital/webflow-templates' target='_blank'>
-              Webflow Templates
-            </a>{" "}
-            by{" "}
-            <a href='https://www.128.digital/' target='_blank'>
-              128.digital.
-            </a>{" "}
-            Powered by{" "}
-            <a href='https://webflow.com/' target='_blank'>
-              Webflow
-            </a>
+            © BasYapim. All Rights Reserved 2023.
           </div>
         </div>
       </div>
